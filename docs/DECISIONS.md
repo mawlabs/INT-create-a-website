@@ -8,6 +8,13 @@ and this log in step.
 The previous project's log (the quote-first lander, 7–17 Sept 2026) is in git history at commit `3dcc7f6`, in
 `docs/DECISIONS.md`.
 
+## 2026-11-24 (night) — a design round before the kit
+
+Angelique agreed to settle the design before building the kit. Phase 1a produces static mockups (three style
+directions for customer sites, two palettes each, and wireframes of the configurator flow) for her to choose from.
+Phase 1 starts only once she has picked a direction. Why: the kit has dozens of variants and each gets an Elementor
+twin, so changing the look after phase 1 or 1b costs double. Spec in the brief, §13 "Phase 1a".
+
 ## 2026-11-24 (evening) — visual system first; contact details; tax by location; licences
 
 - **Visual system first.** Angelique wants a system that works visually before anything else: phases 1 and 2 (kit,
