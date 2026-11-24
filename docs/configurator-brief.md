@@ -97,14 +97,14 @@ functions. Nothing retypes it.
 | 5 | Is the customer's site bilingual at this price? | One language included; the second is a paid add-on (price `TODO(angelique)`). The intake asks for the site language. | Proposed | Phase 1 |
 | 6 | Monthly hosting and care plan | Offered from launch; price and whether it is required `TODO(angelique)` | Proposed | Phase 3 |
 | 7 | Stripe account | Needed for phase 7 only, after the MVP | Not blocking | Phase 7 |
-| 8 | Code owner | Angelique. `.github/CODEOWNERS` is added once her personal GitHub login is known. It cannot be `MAWAdmin`: Claude sessions open pull requests from that account, and GitHub does not let an author approve their own pull request. | Confirmed (login pending) | Phase 1's pull request |
+| 8 | Code owner | Angelique, as `MAWAdmin` (`.github/CODEOWNERS`). Claude sessions also open pull requests as `MAWAdmin`, and GitHub does not let an author approve their own pull request, so `main` requires no approval: Angelique reviews each pull request and merges it herself as admin. | Confirmed | — |
 | 9 | Launch blockers | Production SiteGround access (SSH secrets and docroot), the GA4 ID, the FR review pass, the privacy officer's name, the terms of sale | Open | Phase 6 |
 
 ### 3.2 Other items
 
 | # | Item | Answer or proposal | Status | Blocks |
 |---|---|---|---|---|
-| A | **No `main` branch.** The repository's default branch is `claude/new-session-dpotje`. | Create `main`, make it the default, and require the code owner's approval to merge. | Open | Phase 1's pull request |
+| A | **No `main` branch.** The repository's default branch is `claude/new-session-dpotje`. | `main` created on 24 Nov 2026. Angelique makes it the default branch in GitHub (Settings → General); this session's GitHub access cannot change repository settings. No required approval on `main` (decision 8). | Open | Phase 1's pull request |
 | B | **Supabase project** | A new project for createawebsite, owned by Monkeys at Work, with migrations and functions in this repo under `supabase/`. The MAW app's project belongs to the MAW app repo. | Proposed | Phase 3 |
 | C | **Transactional email** | One provider (Postmark or Resend), sending from a createawebsite.ca address with SPF and DKIM. Also used for admin sign-in links. | Open | Phase 3 |
 | D | **Tax and invoicing** | Monkeys at Work's GST/QST numbers. In the MVP the deposit and balance are invoiced with Monkeys at Work's usual invoicing tool (which one: `TODO(angelique)`); phase 7 moves the deposit to Stripe with the same numbers. | Partly confirmed | Phase 3 |
@@ -369,7 +369,7 @@ copied into ClickUp or email. The brief alone must be enough for a builder to st
 sites; anything in the MAW app repo.
 
 **Review.** One pull request per phase, with 390 px and 1280 px screenshots in `docs/screens/`. Each gets an AI review
-comment and Angelique's approval as code owner. Phases 3 and 4 handle personal data and admin access, so their review
+comment, and Angelique reviews and merges it as code owner (decision 8). Phases 3 and 4 handle personal data and admin access, so their review
 covers the security rules above line by line.
 
 ## 12. Public site (phase 5)
@@ -407,8 +407,7 @@ that launch day has traffic.
 
 | # | Input | Used in | Needed by |
 |---|---|---|---|
-| ● | Your personal GitHub login for `CODEOWNERS` (decision 8) | §4 | Phase 1's pull request |
-| ● | Create `main` and make it the default branch (item A) | CI, deploy | Phase 1's pull request |
+| ● | Make `main` the default branch in GitHub, Settings → General (item A) | CI, deploy | Phase 1's pull request |
 | ● | Confirm or change decisions 1, 2 and 5 | §3, §5 | Phase 1 |
 | | Approve the kit on staging | §13 | Phase 2 |
 | ● | Deposit, page limit, revisions, refund terms; second-language add-on price; care plan price and terms (decisions 4–6) | `offer.ts` | Phase 3 |

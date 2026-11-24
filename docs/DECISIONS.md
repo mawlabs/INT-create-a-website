@@ -17,8 +17,11 @@ Angelique reviewed the first draft of the brief and ruled:
   hosting lessons that carry over, and the "Menu du jour" brand assets are restored from commit `3dcc7f6` in phase 1.
   This also settles decision 3 (there is no old home page) and drops the site-check item.
 - **Price: $1,830 CAD** before tax, not $2,000. The deposit stays at a proposed 50% ($915).
-- **Angelique is the code owner.** `CODEOWNERS` waits for her personal GitHub login. It cannot be `MAWAdmin`: Claude
-  sessions open pull requests from that account, and GitHub does not let a pull request's author approve it.
+- **Angelique is the code owner, as `MAWAdmin`.** Claude sessions open pull requests from the same account, and GitHub
+  does not let a pull request's author approve it, so `main` requires no approval: Angelique reviews each pull request
+  and merges it herself as admin. `.github/CODEOWNERS` names `MAWAdmin`.
+- **`main` is created** at `3dcc7f6`, so the fresh start goes in as a reviewable pull request. Making it the default
+  branch is Angelique's step in GitHub: this session's GitHub access cannot change repository settings.
 - **Colour palettes, not single colours.** Fixed five-colour palettes, browsed the way coolors.co shows them. Each
   palette maps its colours to the kit's roles and is checked for AA contrast at build time.
 - **Stripe is the last phase, after the MVP.** In the MVP, "Build this" submits the order; Monkeys at Work invoices
