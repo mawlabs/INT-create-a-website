@@ -129,8 +129,6 @@ README.md
   workflows/deploy.yml              ← phase 1: static site to SiteGround on push to main
   workflows/staging.yml             ← phase 1: noindex build to caw.mawlabs.ca on demand
   workflows/supabase.yml            ← phase 3: migrations and functions on push to main
-design/
-  round-1/                          ← phase 1a: static design mockups, not shipped
 docs/
   configurator-brief.md             ← this file
   DECISIONS.md
@@ -422,7 +420,7 @@ Each phase is a separate Claude Code session and pull request. The dates are pro
 | Phase | Target | Claude Code builds | Done when |
 |---|---|---|---|
 | 0. Spec | 30 Nov 2026 | The fresh start; this brief; `DECISIONS.md`; `CLAUDE.md` and `README.md` | The open decisions are answered in the brief; nothing from the old project contradicts it |
-| 1a. Design round | 3 Dec 2026 | Static mockups in `design/round-1/`: three style directions for customer sites and wireframes of the configurator flow (details below) | Angelique has picked a direction and its palettes, and the choice is in `DECISIONS.md` |
+| 1a. Design round | 3 Dec 2026 | Run by Angelique in Figma, outside the repo: three style directions for customer sites and wireframes of the configurator flow (details below) | Angelique has picked a direction and its palettes, and `DECISIONS.md` records the choice with a link to the Figma file |
 | 1. Foundation and section kit | 14 Dec 2026 | The workspace, CI (type check, tests, copy check, Lighthouse), deploy and staging workflows, the restored brand; `packages/site-kit` with 9 sections and their variants, field schemas, 3 presets, the palettes and their contrast check, generic placeholder content and recipes; a staging-only kit page | Every variant renders at 390 px and 1280 px with every preset and palette; swapping variants needs no content change; CI is green; screenshots in `docs/screens/` |
 | 1b. Elementor library (module) | After phase 2 | An Elementor template for every section variant, Elementor global fonts and colours for every preset and palette, exported into `packages/site-kit/elementor/`; on the staging WordPress from item H, or by the team if Claude Code cannot reach it | Every variant's twin matches the HTML kit in screenshots at 390 px and 1280 px; any variant without a matching twin is hidden from the preview |
 | 2. Intake, preview, swaps | 4 Jan 2027 | Intake form, preview assembly island, variant, palette and preset swaps, the summary screen | A full run from first question to summary works on a phone with keyboard only; an end-to-end test covers it; the Lighthouse budget passes |
@@ -439,31 +437,29 @@ follows the visual system and must finish before phase 6's test builds. Phases 3
 ### Phase 1a: the design round
 
 Settle how customer sites and the configurator look before phase 1 builds dozens of variants and phase 1b rebuilds them
-in Elementor. Static HTML and CSS in `design/round-1/`, no build step, no framework, no backend. Nothing here ships;
-phase 1 rebuilds what is chosen as the kit.
+in Elementor. Angelique runs this round in Figma, outside the repo. Palette roles are Figma colour variables (one mode
+per palette) and each direction's type is a set of text styles, mirroring the kit's tokens and Elementor's global
+colours and fonts. Phase 1 builds the kit from the chosen frames.
 
 1. **Three style directions for customer sites (A, B, C).** Each is one full home page: header and navigation, hero,
    services, about, proof, gallery, call to action, contact and footer, one layout each. Each direction pairs fonts,
-   corner and spacing style the way a preset will (§5). Fonts are OFL-licensed and self-hosted (for example from
-   `@fontsource` packages).
+   corner and spacing style the way a preset will (§5). Fonts are OFL-licensed (Google Fonts), so they can be self-hosted later.
 2. **Two palettes per direction**, five colours each, assigned to roles (background, surface, text, primary, accent).
-   A small script checks every text-on-colour pairing the page uses for WCAG AA and prints the results; a pairing
-   that fails is fixed, not shipped.
+   Every text-on-colour pairing the page uses meets WCAG AA, with the contrast ratios listed beside each palette.
 3. **Generic placeholder copy** that reads for any business (§5), with a sample business name and contact details.
    Show each direction for two different kinds of business (for example a plumber and a bakery) to prove the copy and
    layout are generic. Images are labelled blocks, never stock photos. Reviews in the proof section are visibly
    placeholders ("[Customer review]"), never invented quotes. No Monkeys at Work brand on these pages.
 4. **One direction also in French**, to check that longer French text fits the layouts.
-5. **Buildable in Elementor.** Layouts use flexbox and grid as Elementor containers do: no scroll or load
-   animations, no layout that depends on script, no CSS that Elementor's controls cannot reproduce. Note anything
-   doubtful on the index page.
+5. **Buildable in Elementor.** Layouts use auto layout, which maps to Elementor's flexbox containers: no scroll or load
+   animations, no overlapping or free-positioned layers that Elementor's controls cannot reproduce. Note anything
+   doubtful in the file.
 6. **Configurator flow wireframes** in the Monkeys at Work "Menu du jour" brand, using its tokens and fonts restored
-   from commit `3dcc7f6` (§1): intake (business type, name, contact details, pages, palette browsed coolors-style with
+   from commit `3dcc7f6` (§1; the values are in the phase 1a prompt): intake (business type, name, contact details, pages, palette browsed coolors-style with
    a next control, style preset, logo, language), the preview with its phone and desktop toggle, stepping through a
    section's layouts, switching palette or style, and the "Build this" summary (price and deposit from §2, before tax,
-   with the template disclosure). Plain links between screens are enough.
-7. **An index page** (`design/round-1/index.html`, `noindex`) linking every mockup, and screenshots of every page at
-   390 px and 1280 px in `docs/screens/design-round-1/`.
+   with the template disclosure). A clickable prototype between screens is enough.
+7. **Every frame at 390 px and 1280 px wide.**
 
 Done when Angelique has picked one direction and its palettes (or asked for a second round), and `DECISIONS.md`
 records the choice and any changes she asked for.

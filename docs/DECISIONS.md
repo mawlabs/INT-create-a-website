@@ -10,8 +10,8 @@ The previous project's log (the quote-first lander, 7–17 Sept 2026) is in git 
 
 ## 2026-11-24 (night) — a design round before the kit
 
-Angelique agreed to settle the design before building the kit. Phase 1a produces static mockups (three style
-directions for customer sites, two palettes each, and wireframes of the configurator flow) for her to choose from.
+Angelique agreed to settle the design before building the kit. Phase 1a is a Figma file she runs outside the repo (three
+style directions for customer sites, two palettes each, and wireframes of the configurator flow), to choose from.
 Phase 1 starts only once she has picked a direction. Why: the kit has dozens of variants and each gets an Elementor
 twin, so changing the look after phase 1 or 1b costs double. Spec in the brief, §13 "Phase 1a".
 
