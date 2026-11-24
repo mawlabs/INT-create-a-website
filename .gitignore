@@ -4,8 +4,4 @@ dist/
 .env
 .env.*
 !.env.example
-.lighthouseci/
-*.log
-.DS_Store
-.cache/
-.caw-audit/
+supabase/.temp/
