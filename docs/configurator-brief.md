@@ -372,7 +372,7 @@ content. Which WordPress role it has, and what short guide comes with it, are `T
 - Never invent prices, promises, testimonials, timelines or legal text. Leave `TODO(angelique)` and list it in
   `DECISIONS.md`.
 - Only `PUBLIC_*` identifiers in `.env`. The Supabase service key, the Claude API key, the email provider key, the
-  ClickUp token, SiteGround SSH keys and (from phase 7) Stripe keys live only in Supabase function secrets or GitHub
+  ClickUp token, SiteGround SSH keys, the staging WordPress application password and (from phase 7) Stripe keys live only in Supabase function secrets or GitHub
   Actions secrets. Never in the repo, in browser code or in logs.
 - Every Supabase table has row-level security on. The customer's order link works only through an edge function and
   the token in §7.

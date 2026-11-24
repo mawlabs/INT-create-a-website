@@ -40,7 +40,7 @@ Commands arrive with phase 1 and are listed here when they exist.
    prices, testimonials, example sites, timelines, promises or legal text — leave `TODO(angelique): …` and list it in
    `docs/DECISIONS.md`. AI-drafted customer copy never invents facts either (brief §8).
 5. **Secrets.** Only `PUBLIC_*` identifiers in `.env`. Supabase service-role, Claude API, email, ClickUp, SiteGround
-   SSH and (from phase 7) Stripe keys live only in Supabase function secrets or GitHub Actions secrets — never in git,
+   SSH, the staging WordPress application password and (from phase 7) Stripe keys live only in Supabase function secrets or GitHub Actions secrets — never in git,
    browser code or logs.
 6. **Data.** Row-level security on every Supabase table; the browser never reads a table directly. Customer files stay
    in a private bucket. The order link token is stored only as a hash.
