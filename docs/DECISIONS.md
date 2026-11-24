@@ -8,6 +8,30 @@ and this log in step.
 The previous project's log (the quote-first lander, 7–17 Sept 2026) is in git history at commit `3dcc7f6`, in
 `docs/DECISIONS.md`.
 
+## 2026-11-24 (later) — decisions 1, 2 and 5: any business, Elementor, a paid second language
+
+Angelique answered the three decisions that blocked phase 1:
+
+- **Decision 1: any legal business, anywhere**, not one industry. The kit is generic: placeholder copy reads for any
+  business and takes the customer's business name and type (`businessType` in the spec, in their own words). The team
+  checks each order before invoicing the deposit and cancels any it will not build. What counts as illegal (proposed:
+  in Canada or where the customer operates) goes in the terms of sale. Not decided: whether GST/QST applies to
+  customers outside Canada (MAW's accountant), and prices stay in CAD for everyone (proposed).
+- **Decision 2: customer sites are WordPress with Elementor, so customers can edit them.** This brings the cost the
+  plan named: two matching libraries. The HTML kit still drives the preview; each section variant gets an Elementor
+  template with the same id, presets become Elementor global fonts and palettes Elementor global colours, all exported
+  into `packages/site-kit/elementor/`. A new **phase 1b** builds that library alongside phase 2, on a staging WordPress
+  with Elementor Pro (item H). Rule: no variant is offered in the preview until its Elementor twin matches it in
+  screenshots, so a customer is never shown something the team cannot build. Proposed: Elementor Pro on Hello
+  Elementor, hosted by Monkeys at Work; the licence, and who owns it after handover, are open.
+- **Decision 5: one language included, the second a paid add-on with a paid multilingual plugin.** Proposed: WPML,
+  which works with Elementor. The MVP offers English and French customer sites; other languages are open.
+- **Decision 6 follows:** customers edit their own content, so the care plan is hosting, updates, backups and security,
+  not the route for edits. Price and whether it is required are still open.
+- The build brief now names the Elementor template for each section and the global settings for the preset and
+  palette. Phase 6's test builds are done in Elementor and handed over with an account that can edit the site; the
+  WordPress role and handover guide are open.
+
 ## 2026-11-24 — Angelique's answers, and a fresh start
 
 Angelique reviewed the first draft of the brief and ruled:
@@ -51,7 +75,8 @@ Angelique reviewed the first draft of the brief and ruled:
 
 ### Still open
 
-Decisions 1, 2, 5 and 6 are proposed; decision 4 is confirmed for the price only. Items A (no `main` branch), B
+(Superseded in part by the entry above.) Decisions 1, 2, 5 and 6 are proposed; decision 4 is confirmed for the price
+only. Items A (no `main` branch), B
 (Supabase project), C (email provider), D (which invoicing tool), E (ClickUp list), F (retention) and G (admin
 allowlist) are open. See the brief §3 and §14.
 

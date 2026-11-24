@@ -2,7 +2,8 @@
 
 createawebsite.ca sells a done-for-you website at a fixed price, under the Monkeys at Work (MAW) business. A visitor
 answers a few questions, previews a site assembled from a section kit, asks us to build it, pays a deposit, and gives us
-their content; the team builds from a brief and delivers in 10 business days.
+their content; the team builds the site in WordPress with Elementor from a brief and delivers in 10 business days, and
+the customer can then edit it. Any legal business, anywhere, can order.
 
 **Read `docs/configurator-brief.md` and then `docs/DECISIONS.md` before doing anything.** The brief is the spec. Its §3
 says which decisions are confirmed and which are only proposed; its §13 lists the phases. Work one phase per session
@@ -14,8 +15,10 @@ nothing else.
 
 ## Layout (as the phases build it)
 
-- `packages/site-kit/` — the customer-site section kit: sections and variants, field schemas, style presets, colour
-  palettes, industry recipes and placeholder copy. Its own tokens, never the MAW brand.
+- `packages/site-kit/` — the customer-site section kit behind the preview: sections and variants, field schemas, style
+  presets, colour palettes, page recipes and generic placeholder copy. Its own tokens, never the MAW brand.
+- `packages/site-kit/elementor/` (from phase 1b) — the Elementor twin of every variant, preset and palette. A variant is
+  not offered in the preview until its twin matches it.
 - `sites/createawebsite-ca/` — the public site, the intake and preview, the customer's order page and the admin panel.
   `src/data/offer.ts` holds every price and term; `src/i18n/{en,fr}.json` holds every string.
 - `supabase/` — migrations and edge functions for orders, content, AI drafting, handoff and admin actions.
@@ -42,7 +45,7 @@ Commands arrive with phase 1 and are listed here when they exist.
 6. **Data.** Row-level security on every Supabase table; the browser never reads a table directly. Customer files stay
    in a private bucket. The order link token is stored only as a hash.
 7. **Two brands, never mixed.** createawebsite.ca's own pages use the MAW "Menu du jour" sub-brand (brief §1). Customer
-   previews and sites use `packages/site-kit` tokens only.
+   previews use `packages/site-kit` tokens; customer sites use the matching Elementor global colours and fonts.
 
 ## Working style
 
