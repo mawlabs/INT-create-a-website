@@ -59,7 +59,8 @@ functions. Nothing retypes it.
 | Term | Value | Status |
 |---|---|---|
 | Price | $1,830 CAD, before tax | Confirmed |
-| Tax | GST and QST, charged under Monkeys at Work's registration numbers | Confirmed |
+| Tax | Charged according to the purchaser's location, under Monkeys at Work's registration numbers. Prices are shown before tax. | Confirmed |
+| Licences | The first year of Elementor Pro, and of WPML for sites with the second-language add-on, included in the price. Who pays for renewals after that: `TODO(angelique)`. | Under consideration |
 | Deposit | 50% ($915 before tax), invoiced after "Build this" | Proposed |
 | Pages | Up to 3. Home is always one; the customer picks the others from Services, About and Contact. | Proposed |
 | Revisions | One round | Proposed |
@@ -95,10 +96,10 @@ functions. Nothing retypes it.
 | # | Decision | Answer or proposal | Status | Blocks |
 |---|---|---|---|---|
 | 1 | Who can order | Any business, anywhere, as long as it is legal. One generic kit; its placeholder copy reads for any business and takes the customer's business name and type. Before invoicing the deposit, the team checks each order and cancels any it will not build. What counts as illegal (proposed: in Canada or where the customer operates) goes in the terms of sale, `TODO(angelique)`. | Confirmed | Phase 1 |
-| 2 | What the customer's finished site is built on | WordPress with Elementor, so customers can edit their own site. This means two matching libraries: the HTML kit that drives the preview, and an Elementor template for every section variant, with presets as Elementor global fonts and palettes as Elementor global colours (§5, phase 1b). Proposed: Elementor Pro on the Hello Elementor theme, hosted by Monkeys at Work; which licence, and who owns it after handover, `TODO(angelique)`. | Confirmed (Elementor); hosting proposed | Phase 1b |
+| 2 | What the customer's finished site is built on | WordPress with Elementor, so customers can edit their own site. This means two matching libraries: the HTML kit that drives the preview, and an Elementor template for every section variant, with presets as Elementor global fonts and palettes as Elementor global colours (§5, phase 1b). Proposed: Elementor Pro on the Hello Elementor theme, hosted by Monkeys at Work. Under consideration: the first year of Elementor Pro included (§2). Which licence, and who owns it after handover, `TODO(angelique)`. | Confirmed (Elementor); hosting proposed | Phase 1b |
 | 3 | The old quote-first home page | Settled by the fresh start: there is no old page. A customer who needs something outside the kit is linked to the Monkeys at Work quote chat on monkeysat.work. | Proposed | Phase 5 |
 | 4 | Price, page limit, revisions, deposit, refund terms | Price $1,830 confirmed. The rest as in §2; refund terms `TODO(angelique)`. | Partly confirmed | Phase 3 |
-| 5 | Is the customer's site bilingual at this price? | One language included; the second is a paid add-on that includes a paid multilingual plugin (proposed: WPML, which works with Elementor). Add-on price and plugin `TODO(angelique)`. The intake asks for the site language; the MVP offers English and French, and other languages are `TODO(angelique)`. | Confirmed | Phase 1 |
+| 5 | Is the customer's site bilingual at this price? | One language included; the second is a paid add-on that includes a paid multilingual plugin (proposed: WPML, which works with Elementor; its first year included, under consideration). Add-on price `TODO(angelique)`. The intake asks for the site language; the MVP offers English and French, and other languages are `TODO(angelique)`. | Confirmed | Phase 1 |
 | 6 | Monthly hosting and care plan | Offered from launch: hosting, WordPress, Elementor and plugin updates, backups and security. Customers edit their own content, so the plan is not where edits go. Price and whether it is required `TODO(angelique)`. | Proposed | Phase 3 |
 | 7 | Stripe account | Needed for phase 7 only, after the MVP | Not blocking | Phase 7 |
 | 8 | Code owner | Angelique, as `MAWAdmin` (`.github/CODEOWNERS`). Claude sessions also open pull requests as `MAWAdmin`, and GitHub does not let an author approve their own pull request, so `main` requires no approval: Angelique reviews each pull request and merges it herself as admin. | Confirmed | — |
@@ -111,7 +112,7 @@ functions. Nothing retypes it.
 | A | **No `main` branch.** The repository's default branch is `claude/new-session-dpotje`. | `main` created on 24 Nov 2026. Angelique makes it the default branch in GitHub (Settings → General); this session's GitHub access cannot change repository settings. No required approval on `main` (decision 8). | Open | Phase 1's pull request |
 | B | **Supabase project** | A new project for createawebsite, owned by Monkeys at Work, with migrations and functions in this repo under `supabase/`. The MAW app's project belongs to the MAW app repo. | Proposed | Phase 3 |
 | C | **Transactional email** | One provider (Postmark or Resend), sending from a createawebsite.ca address with SPF and DKIM. Also used for admin sign-in links. | Open | Phase 3 |
-| D | **Tax and invoicing** | Monkeys at Work's GST/QST numbers. In the MVP the deposit and balance are invoiced with Monkeys at Work's usual invoicing tool (which one: `TODO(angelique)`); phase 7 moves the deposit to Stripe with the same numbers. Prices are in CAD for every customer (proposed). Whether GST/QST applies to customers outside Canada is a question for MAW's accountant, `TODO(angelique)`. | Partly confirmed | Phase 3 |
+| D | **Tax and invoicing** | Tax follows the purchaser's location, under Monkeys at Work's registration numbers; "Build this" asks for the purchaser's country and province or state. In the MVP the deposit and balance are invoiced with Monkeys at Work's usual invoicing tool (which one: `TODO(angelique)`); phase 7 moves the deposit to Stripe, which can calculate tax by location. Prices are in CAD for every customer (proposed). | Confirmed, tool open | Phase 3 |
 | E | **ClickUp** | Which list build orders go in, and who is assigned. A token stored as a function secret. | Open | Phase 4 |
 | F | **Retention** | How long orders, content and files are kept after delivery, and how long an unpaid order is kept (proposed: cancelled and deleted after 14 days). Law 25. | Open | Phase 3 |
 | G | **Admin sign-in** | Who may sign in to the admin panel (an allowlist of Monkeys at Work addresses). | Open | Phase 3 |
@@ -171,8 +172,8 @@ badges, service area) · gallery or past work · call to action · contact (form
   preview, the AI content questions (§8) and the build brief (§10).
 - Colours, fonts and spacing come from CSS custom properties only, so a preset and a palette are each one small set of
   tokens.
-- Placeholder copy is generic, written to read for any business, with the customer's business name and type filled
-  in. It is stored as data, in EN and FR (FR carries `_review: true`).
+- Placeholder copy is generic, written to read for any business, with the customer's business name, type and contact
+  details filled in. It is stored as data, in EN and FR (FR carries `_review: true`).
 - Placeholder images are labelled blocks ("Your photo: your work"), not stock photos.
 - The preview uses kit tokens and the finished site uses the matching Elementor global settings; neither ever uses the
   Monkeys at Work brand.
@@ -194,8 +195,9 @@ picks recipes; swaps edit them.
 **The Elementor twin.** Customers get a WordPress site built with Elementor (decision 2), so the HTML kit has a twin:
 every section variant has a matching Elementor template with the same id, every preset maps to Elementor global fonts,
 and every palette to Elementor global colours. The twins are exported into `packages/site-kit/elementor/` so they are
-versioned with the kit. A variant is not offered in the preview until its twin exists and matches it in screenshots at
-390 px and 1280 px, so a customer is never shown something the team cannot build.
+versioned with the kit. From launch, a variant is not offered in the live preview until its twin exists and matches it in screenshots at
+390 px and 1280 px, so a customer is never shown something the team cannot build. Staging shows every variant, twin or
+not, so the visual system can be judged before phase 1b.
 
 **The spec.** What the customer chooses is one object, validated in the browser and again on the server, and stored on
 the order unchanged:
@@ -207,6 +209,7 @@ type SiteSpec = {
   language: 'en' | 'fr';         // the included language (decision 5)
   secondLanguage?: 'en' | 'fr';  // the paid add-on, built with the multilingual plugin
   businessName: string;
+  contact: { phone?: string; email?: string; address?: string; hours?: string }; // shown in header, contact, footer
   hasLogo: boolean;
   preset: PresetId;
   palette: PaletteId;
@@ -223,8 +226,10 @@ test asserts it is absent from the production output.
 
 The customer goes from first question to submitted order in one sitting, with no login and no meeting.
 
-1. **Intake.** Six or seven plain questions: type of business, business name, which pages (up to the page limit),
-   colour palette, style preset, whether they have a logo, and the site language. Answers stay in the browser
+1. **Intake.** A few plain questions: type of business, business name, contact details (phone, email, address or
+   service area, opening hours; each optional), which pages (up to the page limit), colour palette, style preset,
+   whether they have a logo, and the site language. The business name and contact details appear in the preview's
+   header, contact section and footer from the first screen. Answers stay in the browser
    (`sessionStorage`) until "Build this", so a reload or the back button keeps their place.
 2. **Preview.** The site is assembled from the page recipes with their business name, their business type and the
    generic placeholder copy. It works at phone and desktop widths, and the customer can switch between the two.
@@ -232,7 +237,8 @@ The customer goes from first question to submitted order in one sitting, with no
    Nothing else is editable.
 4. **Build this.** A summary shows what is included, from `offer.ts`: price, deposit, page count, one revision round,
    10 business days from the day content is complete, and the plain statement that the site is template-based. The
-   customer enters name, email and phone and agrees to the terms and privacy notice. The order is saved as
+   customer enters their own name, email and phone, and their location (country and province or state), which sets
+   the tax shown, and agrees to the terms and privacy notice. The order is saved as
    `submitted`, and they get an email saying the deposit invoice is on its way.
 5. **Deposit.** The team checks the order first, and cancels it with a short email if it is for a business Monkeys at
    Work will not build for (decision 1). Otherwise Monkeys at Work sends the deposit invoice. When it is paid, the team marks it received in the admin
@@ -404,13 +410,18 @@ covers the security rules above line by line.
 
 ## 13. Phases
 
+**Visual system first.** The first milestone is a system that works visually: phases 1 and 2, the kit, intake,
+preview and swaps, running on staging with nothing stored and no backend. Everything after it is a module (orders and
+admin, content and AI, the Elementor library, the public site, payments), built one at a time once Angelique has seen
+the visual system. The modules' dates below are reset at that point.
+
 Each phase is a separate Claude Code session and pull request. The dates are proposed targets, not commitments.
 
 | Phase | Target | Claude Code builds | Done when |
 |---|---|---|---|
 | 0. Spec | 30 Nov 2026 | The fresh start; this brief; `DECISIONS.md`; `CLAUDE.md` and `README.md` | The open decisions are answered in the brief; nothing from the old project contradicts it |
 | 1. Foundation and section kit | 14 Dec 2026 | The workspace, CI (type check, tests, copy check, Lighthouse), deploy and staging workflows, the restored brand; `packages/site-kit` with 9 sections and their variants, field schemas, 3 presets, the palettes and their contrast check, generic placeholder content and recipes; a staging-only kit page | Every variant renders at 390 px and 1280 px with every preset and palette; swapping variants needs no content change; CI is green; screenshots in `docs/screens/` |
-| 1b. Elementor library | 4 Jan 2027 | An Elementor template for every section variant, Elementor global fonts and colours for every preset and palette, exported into `packages/site-kit/elementor/`; on the staging WordPress from item H, or by the team if Claude Code cannot reach it | Every variant's twin matches the HTML kit in screenshots at 390 px and 1280 px; any variant without a matching twin is hidden from the preview |
+| 1b. Elementor library (module) | After phase 2 | An Elementor template for every section variant, Elementor global fonts and colours for every preset and palette, exported into `packages/site-kit/elementor/`; on the staging WordPress from item H, or by the team if Claude Code cannot reach it | Every variant's twin matches the HTML kit in screenshots at 390 px and 1280 px; any variant without a matching twin is hidden from the preview |
 | 2. Intake, preview, swaps | 4 Jan 2027 | Intake form, preview assembly island, variant, palette and preset swaps, the summary screen | A full run from first question to summary works on a phone with keyboard only; an end-to-end test covers it; the Lighthouse budget passes |
 | 3. Orders and admin panel | 15 Jan 2027 | Supabase schema with row-level security, `submit-order`, emails, the admin panel with sign-in, the deposit-received action and the private order link | A submitted order appears in the admin panel; marking the deposit sends one working link; nobody outside the allowlist can read an order |
 | 4. Content and handoff | 22 Jan 2027 | Upload path, AI question-and-draft path, order status page, the build brief, the ClickUp task, reminders | Both content paths end in a complete brief; the brief alone is enough for a builder to start; uploads are private to the order |
@@ -420,7 +431,7 @@ Each phase is a separate Claude Code session and pull request. The dates are pro
 
 **Order matters.** Phase 1 is now the longest: it builds the foundation as well as the kit, and the kit sets the
 quality of everything a customer sees. Do not start phase 2 until Angelique has approved the kit on staging. Phase 1b
-runs alongside phase 2 and must finish before phase 6's test builds. Phases 3 and 4 can overlap. Phase 5 depends on real example sites, so the three test builds can start as soon as phase 4 works.
+follows the visual system and must finish before phase 6's test builds. Phases 3 and 4 can overlap. Phase 5 depends on real example sites, so the three test builds can start as soon as phase 4 works.
 
 **Outside the build:** how the first customers find the site needs its own plan, running alongside phases 1 to 5, so
 that launch day has traffic.
@@ -431,9 +442,9 @@ that launch day has traffic.
 |---|---|---|---|
 | ● | Make `main` the default branch in GitHub, Settings → General (item A) | CI, deploy | Phase 1's pull request |
 | | Approve the kit on staging | §13 | Phase 2 |
-| ● | A staging WordPress with Elementor Pro and access for Claude Code (item H); the Elementor Pro licence and who owns it after handover (decision 2) | §5 | Phase 1b |
+| ● | A staging WordPress with Elementor Pro and access for Claude Code (item H); the Elementor Pro licence, who owns it after handover, and whether the first year of Elementor Pro and WPML is included (decision 2, §2) | §5 | Phase 1b |
 | ● | Deposit, page limit, revisions, refund terms; second-language add-on price and plugin; care plan price and terms (decisions 4–6) | `offer.ts` | Phase 3 |
-| | Customer site languages beyond English and French (decision 5); tax for customers outside Canada (item D) | §3 | Phase 3 |
+| | Customer site languages beyond English and French (decision 5) | §3 | Phase 3 |
 | ● | Supabase project (item B); email provider account and DNS access (item C); the admin allowlist (item G); the retention periods (item F) | §7, §9 | Phase 3 |
 | | Which invoicing tool sends the deposit and balance invoices (item D) | §6 | Phase 3 |
 | ● | ClickUp list and assignee (item E); the team email address for briefs | §10 | Phase 4 |

@@ -8,6 +8,21 @@ and this log in step.
 The previous project's log (the quote-first lander, 7–17 Sept 2026) is in git history at commit `3dcc7f6`, in
 `docs/DECISIONS.md`.
 
+## 2026-11-24 (evening) — visual system first; contact details; tax by location; licences
+
+- **Visual system first.** Angelique wants a system that works visually before anything else: phases 1 and 2 (kit,
+  intake, preview, swaps) on staging, with no backend. Orders and admin, content and AI, the Elementor library, the
+  public site and payments become modules built afterwards, one at a time; their dates are reset once she has seen it.
+  Phase 1b moves after phase 2 accordingly, and staging shows every variant whether or not its Elementor twin exists
+  yet; the twin-gating rule applies to the live preview from launch.
+- **Business name and contact details in the intake.** Phone, email, address or service area and opening hours, each
+  optional, go into the spec (`contact`) and appear in the preview's header, contact section and footer.
+- **Tax follows the purchaser's location**, under Monkeys at Work's registration numbers. "Build this" asks for country
+  and province or state; prices are shown before tax. This replaces the open question about customers outside Canada.
+  Phase 7's Stripe Checkout can calculate tax by location.
+- **Under consideration: the first year of Elementor Pro, and of WPML for second-language sites, included** in the
+  price. Renewals after that are open.
+
 ## 2026-11-24 (later) — decisions 1, 2 and 5: any business, Elementor, a paid second language
 
 Angelique answered the three decisions that blocked phase 1:
