@@ -420,7 +420,7 @@ Each phase is a separate Claude Code session and pull request. The dates are pro
 | Phase | Target | Claude Code builds | Done when |
 |---|---|---|---|
 | 0. Spec | 30 Nov 2026 | The fresh start; this brief; `DECISIONS.md`; `CLAUDE.md` and `README.md` | The open decisions are answered in the brief; nothing from the old project contradicts it |
-| 1a. Design round | 3 Dec 2026 | Run by Angelique in Figma, outside the repo: three style directions for customer sites and wireframes of the configurator flow (details below) | Angelique has picked a direction and its palettes, and `DECISIONS.md` records the choice with a link to the Figma file |
+| 1a. Design round | 3 Dec 2026 | Run by Angelique in a design tool (Claude Design), outside the repo: first the configurator tool itself, then style directions for customer sites (details below) | Angelique has approved the tool's design and picked a direction and its palettes, and `DECISIONS.md` records both with links to the design files |
 | 1. Foundation and section kit | 14 Dec 2026 | The workspace, CI (type check, tests, copy check, Lighthouse), deploy and staging workflows, the restored brand; `packages/site-kit` with 9 sections and their variants, field schemas, 3 presets, the palettes and their contrast check, generic placeholder content and recipes; a staging-only kit page | Every variant renders at 390 px and 1280 px with every preset and palette; swapping variants needs no content change; CI is green; screenshots in `docs/screens/` |
 | 1b. Elementor library (module) | After phase 2 | An Elementor template for every section variant, Elementor global fonts and colours for every preset and palette, exported into `packages/site-kit/elementor/`; on the staging WordPress from item H, or by the team if Claude Code cannot reach it | Every variant's twin matches the HTML kit in screenshots at 390 px and 1280 px; any variant without a matching twin is hidden from the preview |
 | 2. Intake, preview, swaps | 4 Jan 2027 | Intake form, preview assembly island, variant, palette and preset swaps, the summary screen | A full run from first question to summary works on a phone with keyboard only; an end-to-end test covers it; the Lighthouse budget passes |
@@ -437,7 +437,9 @@ follows the visual system and must finish before phase 6's test builds. Phases 3
 ### Phase 1a: the design round
 
 Settle how customer sites and the configurator look before phase 1 builds dozens of variants and phase 1b rebuilds them
-in Elementor. Angelique runs this round in Figma, outside the repo. Palette roles are Figma colour variables (one mode
+in Elementor. Angelique runs this round in a design tool (Claude Design since 24 Nov 2026; a Figma attempt produced a
+website template instead of the tool), outside the repo. The configurator tool (item 6) comes first, on its own; the
+customer-site directions (items 1–5) are a separate pass, so neither crowds out the other. Palette roles are Figma colour variables (one mode
 per palette) and each direction's type is a set of text styles, mirroring the kit's tokens and Elementor's global
 colours and fonts. Phase 1 builds the kit from the chosen frames.
 
