@@ -2,7 +2,7 @@
 
 Monkeys at Work funnel landing sites. Static Astro sites sharing one kit (`packages/lander-kit`), each deployed to its own SiteGround docroot by GitHub Actions. First site: `createawebsite.ca`.
 
-Read `CLAUDE.md`, then `docs/createawebsite-brief.md`, then `docs/DECISIONS.md` (the 7 Sept evening entry records the quote-first direction that supersedes parts of the brief). Open items for Angelique are at the top of DECISIONS.md.
+Read `CLAUDE.md`, then `docs/createawebsite-brief.md`, then `docs/DECISIONS.md` (the 7 Sept evening entry records the quote-first direction that supersedes parts of the brief). Open items for Angelique are at the top of DECISIONS.md. For the fixed-price configurator build (from 24 Nov 2026), start with `docs/configurator-brief.md`.
 
 ```sh
 pnpm install

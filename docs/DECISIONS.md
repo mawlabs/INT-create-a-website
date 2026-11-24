@@ -4,6 +4,10 @@ Kept by Claude Code. One entry per choice the brief left open, plus every `TODO(
 
 ## Open items for Angelique (blocking marked ●)
 
+**Configurator (from 24 Nov 2026):** nine decisions and seven further items are in `docs/configurator-brief.md` §3,
+with what each blocks; the inputs needed per phase are in §13 of that brief. The table below is the September list
+for the quote-first site, and its items still block any public launch (decision 9 of the configurator brief).
+
 Run `pnpm check:copy -- --list` for the live list. As of 7 Sept 2026:
 
 | # | Item | Where | Brief |
@@ -97,6 +101,70 @@ this outright. Two fixes:
 - fetch at build time from `api.wordpress.org/core/version-check/1.7/` and `endoflife.date/api/php.json`, write the
   file, and fail the build if either is unreachable. GitHub Actions has open network, so this works in the deploy
   even though it did not here. The report already carries a checked-on date, which would then mean something.
+
+
+## 2026-11-24 — direction change: a fixed-price configurator
+
+Angelique's build plan of 24 Nov 2026 ("createawebsite.ca — Claude Code build plan", in Claude Docs) changes what
+the site sells. The main offer becomes a done-for-you website at a fixed price of about $2,000. The visitor answers a
+few questions, previews a site assembled from a section kit, pays a deposit, and hands their content to the team,
+who deliver in 10 business days. The site says plainly that it is template-based. Target launch: the week of 8
+February 2027, in seven phases, one pull request each.
+
+`docs/configurator-brief.md` is the spec. It wins where it conflicts with `docs/createawebsite-brief.md` or the
+entries below, and its §1 lists every such conflict. Everything it does not touch still stands. Phase 0's documents (this entry,
+the brief and the `CLAUDE.md` update) were written on 24 Nov 2026.
+
+**Nothing is confirmed yet.** The plan's nine decisions are recorded in brief §3.1 with the plan's recommendations as
+**proposed** defaults. Decisions 1–3 were meant to be answered in phase 0; they are not, so phase 0's "done when" is
+not met until Angelique confirms or changes them. Phase 1 does not open its pull request until decisions 1, 2, 5 and 8
+are confirmed.
+
+### Found while writing the brief (brief §3.2)
+
+- **A. There is no `main` branch.** The repository's default branch is `claude/new-session-dpotje`. `deploy.yml` runs
+  on push to `main` and `ci.yml`'s strict copy gate checks `main`, so neither has ever run. Proposed: create `main`
+  from the current head, make it the default, and protect it with the code-owner rule. Blocks phase 1's pull request.
+- **B. Supabase project.** Proposed: a new project for createawebsite orders, with migrations and functions in this
+  repo under `supabase/`. The existing MAW project's migrations belong to the MAW app repo, which this repo must not
+  touch.
+- **C. Transactional email.** No mail transport exists in this repo. Proposed: Postmark or Resend, sending from a
+  createawebsite.ca address.
+- **D. The site check stays off the launch page.** Its own blockers (privacy text, corpus, version source) are
+  unchanged and do not gate the configurator.
+- **E. GST/QST and the balance.** How tax is charged on the price and the deposit, and how the remaining 50% is
+  collected (proposed: a Stripe invoice at delivery).
+- **F. ClickUp list, assignee and token** for build orders.
+- **G. Retention period** for orders, content and files after delivery (Law 25).
+- The plan cites `sites/wphandyman-ca` as support for choosing home trades. The scaffold is a one-line `noindex`
+  page named for WordPress fixes, so it supports neither choice.
+- The repo has no `CODEOWNERS` file and is not in the MAW Labs PR hand-off map, which decision 8 has to fix before
+  the Labs merge rule can work here.
+
+### Choices the brief made where the plan was silent
+
+- **The quote engine and `pricing.ts` are unchanged.** CLAUDE.md #5 keeps the engine in step with the MAW chat
+  framework, so it is not edited to fit a $2,000 product. The offer's numbers go in a new `src/data/offer.ts`, read by
+  the site and by the edge functions, and the public copy explains template-based versus custom design.
+- **Home is always one of the pages.** The customer picks the rest, from Services, About and Contact, up to the limit.
+- **Main colour is a fixed set of swatches per preset**, each checked for AA contrast, not a free colour picker.
+- **Placeholder images are labelled blocks**, not stock photos.
+- **Preset fonts must be licensed for customer sites** (OFL or similar) and self-hosted.
+- **No Stripe.js.** "Build this" calls an edge function that returns a Checkout URL, and the browser navigates to it,
+  so there is still no third-party script before consent.
+- **A `pending_payment` order is saved when Checkout opens** and deleted when the session expires. The plan's "nothing
+  stored server-side" holds for a preview abandoned before "Build this".
+- **The order token** is 32 random bytes, stored only as a hash, and carried in the URL fragment so it never reaches
+  server logs.
+- **The team moves orders through `in_build`, `in_review` and `delivered` by ClickUp status**, through a webhook, since
+  there is no admin panel.
+- **Files from the customer are attached to the ClickUp task**, so the team never needs Supabase access.
+- **AI drafting uses `claude-opus-5-5`** with structured outputs built from the section field schema, server-side
+  refusal fallbacks, explicit effort, and a rule against inventing facts (licences, years in business, reviews).
+- **Upload limits:** JPEG, PNG, WebP; SVG and PDF for logos only; 10 MB per file; 40 files per order. SVGs are never
+  rendered on our pages.
+
+Affects: `docs/configurator-brief.md` (new), `CLAUDE.md`, this file. No code changed in phase 0.
 
 
 ## 2026-09-17 (evening) — the review, finished: staging go, public with conditions
